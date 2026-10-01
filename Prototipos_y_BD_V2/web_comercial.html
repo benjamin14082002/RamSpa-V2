@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAM SPA - Especialistas en Superficies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 antialiased selection:bg-purple-200">
+
+    <!-- Navegación Superior -->
+    <nav class="bg-white shadow-sm py-4 px-8 flex justify-between items-center relative z-10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-purple-700 rounded-lg flex items-center justify-center font-bold text-white text-xl">R</div>
+            <span class="text-2xl font-black tracking-tight text-gray-900">RAM SPA<span class="text-purple-600">.</span></span>
+        </div>
+        <div class="hidden md:flex gap-6 font-medium text-gray-600">
+            <a href="#" class="hover:text-purple-600 transition-colors">Inicio</a>
+            <a href="#" class="hover:text-purple-600 transition-colors">Nosotros</a>
+            <a href="#" class="text-purple-700 border-b-2 border-purple-700">Cotizar</a>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal (Hero Section) -->
+    <main class="min-h-[calc(100vh-80px)] flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+        
+        <!-- Elementos decorativos de fondo -->
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[50%] bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-[30%] h-[40%] bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+
+        <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 relative z-10">
+            
+            <!-- Columna Izquierda: Texto y Propuesta -->
+            <div class="flex flex-col justify-center">
+                <span class="inline-block py-1 px-3 rounded-full bg-purple-100 text-purple-700 text-sm font-bold tracking-wider mb-4 w-max">
+                    SOLUCIONES PROFESIONALES
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 mb-6">
+                    Renovamos tus espacios con <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">calidad garantizada.</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    Desde el pulido vitrificado de pisos flotantes hasta la limpieza profunda post-obra. Déjanos tus datos y un experto de RAM SPA te contactará hoy mismo con un presupuesto a medida.
+                </p>
+                
+                <!-- Puntos de confianza -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 text-gray-700 font-medium">
+                        <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">✓</div>
+                        Atención en toda la Región Metropolitana.
+                    </div>
+                    <div class="flex items-center gap-3 text-gray-700 font-medium">
+                        <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">✓</div>
+                        Más de 5 años de experiencia.
+                    </div>
+                    <div class="flex items-center gap-3 text-gray-700 font-medium">
+                        <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">✓</div>
+                        Materiales de primera calidad.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Formulario Dinámico -->
+            <div class="bg-white rounded-3xl p-8 lg:p-10 shadow-2xl border border-gray-100 relative">
+                <!-- Pequeño detalle de diseño -->
+                <div class="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 rounded-2xl -z-10 rotate-12"></div>
+
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Solicita tu Cotización</h2>
+                <p class="text-gray-500 text-sm mb-6">Completa el formulario y responderemos a la brevedad.</p>
+
+                <form action="#" class="space-y-5">
+                    
+                    <!-- Fila 1: Nombre y Apellido -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nombre</label>
+                            <input type="text" placeholder="Ej: Carlos" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Apellido</label>
+                            <input type="text" placeholder="Ej: Soto" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Fila 2: Email -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Correo Electrónico</label>
+                        <input type="email" placeholder="csoto@email.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all">
+                    </div>
+
+                    <!-- Fila 3: Teléfono -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Teléfono Móvil</label>
+                        <input type="tel" placeholder="+56 9 1234 5678" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all">
+                    </div>
+
+                    <!-- Fila 4: Servicio (Conectado a BD) -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">¿Qué servicio necesitas?</label>
+                        <div class="relative">
+                            <select class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none appearance-none transition-all bg-white text-gray-700 font-medium">
+                                <option value="" disabled selected>Selecciona una opción...</option>
+                                <!-- Estos <option> en el futuro se generarán con un ciclo `for` en Django desde tu tabla 'servicios' -->
+                                <option value="1">Pulido de Piso Flotante</option>
+                                <option value="2">Instalación de Cerámica</option>
+                                <option value="3">Limpieza Post-Obra</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón Enviar -->
+                    <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transform transition hover:-translate-y-1 mt-4">
+                        Enviar Solicitud
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

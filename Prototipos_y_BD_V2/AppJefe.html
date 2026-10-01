@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Jefe - RAM SPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen py-10">
+
+    <!-- Contenedor del celular -->
+    <div class="bg-gray-50 w-full max-w-sm h-[800px] relative shadow-2xl overflow-hidden border-[6px] border-gray-900 rounded-[3rem]">
+        
+        <!-- Header / Top Bar -->
+        <div class="pt-12 pb-4 px-6 bg-white rounded-b-3xl shadow-sm z-10 relative">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold border-2 border-purple-200">
+                        RS
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium">Bienvenido,</p>
+                        <h1 class="text-lg font-extrabold text-gray-800 leading-tight">Admin RAM SPA</h1>
+                    </div>
+                </div>
+                <!-- Campana de notificaciones -->
+                <div class="relative p-2 bg-gray-100 rounded-full">
+                    <div class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido scrolleable -->
+        <div class="px-6 mt-4 h-full overflow-y-auto pb-40">
+            
+            <!-- Tarjeta Métrica Principal -->
+            <div class="bg-gradient-to-br from-purple-700 to-indigo-800 rounded-2xl p-5 shadow-lg relative text-white overflow-hidden">
+                <!-- Círculo decorativo fondo -->
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-white opacity-10 rounded-full"></div>
+                <p class="text-sm font-semibold text-purple-200 uppercase tracking-wider">Cotizaciones de Hoy</p>
+                <div class="flex items-end gap-3 mt-1">
+                    <h2 class="text-5xl font-black">3</h2>
+                    <p class="text-sm text-purple-200 mb-1 font-medium">+1 respecto ayer</p>
+                </div>
+            </div>
+
+            <!-- Acciones Rápidas -->
+            <div class="flex justify-between mt-6 px-2">
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-purple-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-600">Nuevo</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-600">Reportes</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-orange-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-600">Clientes</span>
+                </div>
+            </div>
+
+            <!-- Últimas Solicitudes (Feed) -->
+            <div class="mt-8">
+                <div class="flex justify-between items-end mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">Últimas Solicitudes</h3>
+                    <a href="#" class="text-xs font-bold text-purple-600">Ver todas</a>
+                </div>
+                
+                <div class="flex flex-col gap-3">
+                    <!-- Item 1 (Carlos Soto) -->
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" /></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-800">Carlos Soto</p>
+                                <p class="text-xs text-gray-500">Pulido Piso Flotante</p>
+                            </div>
+                        </div>
+                        <span class="bg-orange-100 text-orange-700 text-[10px] px-2 py-1 rounded-md font-bold uppercase">Pendiente</span>
+                    </div>
+
+                    <!-- Item 2 (Andrea Gómez) -->
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" /></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-800">Andrea Gómez</p>
+                                <p class="text-xs text-gray-500">Limpieza Post-Obra</p>
+                            </div>
+                        </div>
+                        <span class="bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded-md font-bold uppercase">Revisado</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alertas de Inventario -->
+            <div class="mt-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Estado Inventario</h3>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="font-bold text-gray-700">Cera Acrílica 5L</span>
+                            <span class="font-bold text-red-500">20 un</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-red-500 h-2 rounded-full" style="width: 25%"></div>
+                        </div>
+                        <p class="text-[10px] text-red-500 mt-1 font-semibold text-right">¡Stock Bajo!</p>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="font-bold text-gray-700">Adhesivo Bekron</span>
+                            <span class="font-bold text-green-600">50 un</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Menú de Navegación Inferior (Bottom Bar) -->
+        <div class="absolute bottom-0 w-full bg-white border-t border-gray-200 flex justify-around items-center py-4 pb-8 px-4 z-20">
+            <!-- Icono Home (Activo) -->
+            <div class="flex flex-col items-center cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="text-[10px] font-bold text-purple-700 mt-1">Inicio</span>
+            </div>
+            <!-- Icono Inventario -->
+            <div class="flex flex-col items-center cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+                <span class="text-[10px] font-medium text-gray-400 mt-1">Stock</span>
+            </div>
+            <!-- Icono Usuario -->
+            <div class="flex flex-col items-center cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span class="text-[10px] font-medium text-gray-400 mt-1">Perfil</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
