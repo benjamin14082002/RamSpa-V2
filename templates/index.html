@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAM SPA | Instalación y Pulido</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ramspa-red': '#C72100',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="bg-gray-50 relative">
+
+    <!-- Navegación -->
+    <nav class="flex items-center justify-between px-8 py-6 bg-white shadow-sm">
+      <div class="text-2xl font-bold text-ramspa-red tracking-tight">RAM SPA</div>
+      
+      <div class="hidden md:flex space-x-8 text-gray-700 font-medium items-center">
+        <a href="#" class="hover:text-ramspa-red transition">Inicio</a>
+        <a href="#" class="hover:text-ramspa-red transition">Servicios</a>
+        <a href="#contacto-mapa" class="hover:text-ramspa-red transition">Ubicación</a>
+        <a href="#cotizar" class="hover:text-ramspa-red transition">Contacto</a>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        {% if user.is_authenticated %}
+            <span class="text-gray-700 font-medium bg-gray-100 px-4 py-2 rounded-full">Hola, <span class="font-bold text-ramspa-red">{{ user.username }}</span></span>
+            <form method="POST" action="{% url 'logout' %}" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="text-gray-500 hover:text-ramspa-red transition font-semibold cursor-pointer">Salir</button>
+            </form>
+            {% if user.is_superuser %}
+                <a href="/admin" class="bg-gray-800 text-white px-4 py-2 rounded-full font-semibold hover:bg-black transition shadow-sm">Panel Admin</a>
+            {% endif %}
+        {% else %}
+            <button onclick="abrirModal('modal-login')" class="text-gray-700 hover:text-ramspa-red font-medium transition cursor-pointer">
+                Iniciar Sesión
+            </button>
+            <button onclick="abrirModal('modal-registro')" class="bg-ramspa-red text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-700 transition shadow-md cursor-pointer">
+                Registrarse
+            </button>
+        {% endif %}
+      </div>
+    </nav>
+
+    <!-- Header / Hero Section con Imagen Integrada -->
+    <header class="max-w-6xl mx-auto px-8 py-16 flex flex-col md:flex-row items-center bg-white mt-6 rounded-2xl shadow-sm border border-gray-100">
+      <div class="md:w-1/2">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+          Expertos en <span class="text-ramspa-red">Pulido y Restauración</span> de Pisos
+        </h1>
+        <p class="text-lg text-gray-600 mb-8">
+          Devolvemos el brillo original a sus baldosas y mármoles con tecnología de punta y acabados de lujo.
+        </p>
+        <button class="bg-ramspa-red text-white px-8 py-4 rounded-lg font-bold hover:bg-orange-700 transition shadow-lg">
+          Ver Proyectos
+        </button>
+      </div>
+      <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
+        <div class="w-80 h-96 rounded-3xl shadow-xl border-4 border-white transform rotate-3 relative overflow-hidden bg-gray-100">
+            <img src="static/images/PisoMarmol.webp" alt="Pulido de pisos RAM SPA" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </header>
+
+    <!-- Sección de Cotización -->
+    <section id="cotizar" class="max-w-4xl mx-auto py-16 px-8 mt-12 bg-white rounded-2xl shadow-lg border border-gray-100">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Solicita tu Cotización</h2>
+            <p class="text-gray-600">Completa el formulario y nos contactaremos contigo y enviaremos una notificación automática a nuestro equipo.</p>
+        </div>
+        
+        {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'inicio' %}" class="space-y-6">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                        <input type="text" name="nombre_cliente" value="{{ user.username }}" required 
+                               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ramspa-red focus:border-transparent bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono de Contacto</label>
+                        <input type="tel" name="telefono" required 
+                               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ramspa-red focus:border-transparent bg-gray-50">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+                    <input type="email" name="email" value="{{ user.email }}" required 
+                           class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ramspa-red focus:border-transparent bg-gray-50">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Detalles del Proyecto</label>
+                    <textarea name="mensaje" rows="5" required placeholder="Cuéntanos qué tipo de piso tienes y qué servicio buscas..."
+                              class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ramspa-red focus:border-transparent bg-gray-50"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-ramspa-red text-white font-bold text-lg py-4 rounded-xl hover:bg-orange-700 transition shadow-lg transform hover:-translate-y-1">
+                    Enviar Solicitud y Notificar
+                </button>
+            </form>
+        {% else %}
+            <div class="bg-gray-50 p-10 rounded-2xl text-center border-2 border-dashed border-gray-300">
+                <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+                    <svg class="h-10 w-10 text-ramspa-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Inicia sesión para cotizar</h3>
+                <p class="text-gray-600 mb-8 max-w-md mx-auto">Para brindarte una atención personalizada, necesitamos que accedas a tu cuenta de cliente en RAM SPA.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button onclick="abrirModal('modal-login')" class="w-full sm:w-auto bg-ramspa-red text-white px-8 py-3 rounded-lg font-bold hover:bg-orange-700 transition shadow-md cursor-pointer">Iniciar Sesión</button>
+                    <button onclick="abrirModal('modal-registro')" class="w-full sm:w-auto bg-white text-gray-700 border-2 border-gray-200 px-8 py-3 rounded-lg font-bold hover:border-ramspa-red hover:text-ramspa-red transition cursor-pointer">Crear Cuenta nueva</button>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+
+    <!-- Sección de Google Maps -->
+    <section id="contacto-mapa" class="max-w-6xl mx-auto py-16 px-8 mt-12 mb-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-gray-100 flex flex-col md:flex-row gap-8 items-center">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nuestra Ubicación</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">Operamos desde Maipú brindando cobertura y servicios de pulido y restauración de alta gama en toda la Región Metropolitana.</p>
+                <div class="space-y-4 text-gray-700">
+                    <p class="flex items-center"><strong class="w-24">Zona:</strong> Maipú, Santiago, Chile</p>
+                    <p class="flex items-center"><strong class="w-24">Soporte:</strong> contacto@instalacionesramspa.cl</p>
+                    <p class="flex items-center"><strong class="w-24">Horarios:</strong> Lunes a Viernes, 09:00 - 18:00 hrs</p>
+                </div>
+            </div>
+            <div class="md:w-1/2 w-full h-80 rounded-xl overflow-hidden shadow-md border border-gray-200">
+                <iframe width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106253.2844857774!2d-70.81203028359372!3d-33.5108605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c76a917e7667%3A0x62957198fb9ec2b1!2sMaip%C3%BA%2C%20Santiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1710000000000!5m2!1ses!2scl">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MODALES FLOTANTES ================= -->
+    
+    <!-- Modal de Login -->
+    <div id="modal-login" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl flex flex-col md:flex-row overflow-hidden relative">
+            <button onclick="cerrarModal('modal-login')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-900 z-10 cursor-pointer bg-white rounded-full p-1 shadow-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="md:w-5/12 bg-gradient-to-br from-ramspa-red to-orange-600 p-10 text-white flex flex-col justify-center hidden md:flex">
+                <h3 class="text-3xl font-bold mb-4">Bienvenido de vuelta</h3>
+                <p class="text-white text-opacity-90 leading-relaxed">Accede a tu cuenta para gestionar tus cotizaciones y revisar el estado de tus proyectos.</p>
+            </div>
+            <div class="md:w-7/12 p-10 md:p-12 flex flex-col justify-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Iniciar Sesión</h2>
+                <form method="POST" action="{% url 'login' %}" class="space-y-5">
+                    {% csrf_token %}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre de usuario</label>
+                        <input type="text" name="username" required placeholder="Ej. benjamin"
+                               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ramspa-red focus:border-transparent bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
+                        <input type="password" name="password" required placeholder="••••••••"
+                               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ramspa-red focus:border-transparent bg-gray-50">
+                    </div>
+                    <button type="submit" class="w-full bg-gray-900 text-white font-bold py-4 rounded-lg hover:bg-ramspa-red transition shadow-md mt-4">Entrar a mi cuenta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div id="modal-registro" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl flex flex-col md:flex-row overflow-hidden relative">
+            <button onclick="cerrarModal('modal-registro')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-900 z-10 cursor-pointer bg-white rounded-full p-1 shadow-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="md:w-5/12 bg-gray-900 p-10 text-white flex flex-col justify-center hidden md:flex relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-bold mb-4">Únete a RAM SPA</h3>
+                    <p class="text-gray-300 leading-relaxed mb-6">Crea tu cuenta y descubre el estándar de calidad en pulido y restauración de pisos.</p>
+                </div>
+            </div>
+            <div class="md:w-7/12 p-10 md:p-12 flex flex-col justify-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Crear Cuenta</h2>
+                <form method="POST" action="{% url 'registro' %}" class="space-y-5">
+                    {% csrf_token %}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre de usuario</label>
+                        <input type="text" name="username" required placeholder="Ej. benjamin"
+                               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ramspa-red focus:border-transparent bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
+                        <input type="password" name="password" required placeholder="Mínimo 8 caracteres"
+                               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ramspa-red focus:border-transparent bg-gray-50">
+                    </div>
+                    <button type="submit" class="w-full bg-ramspa-red text-white font-bold py-4 rounded-lg hover:bg-orange-700 transition shadow-md mt-4">Completar Registro</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function cerrarModal(id) { document.getElementById(id).classList.add('hidden'); }
+    </script>
+    
+    <script type="module" src="{% static 'main.js' %}"></script>
+</body>
+</html>
